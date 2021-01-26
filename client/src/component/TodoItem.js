@@ -8,10 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-// CRUD functions
 import { updateTodo, deleteTodo } from './../API';
 
-export default function AddTodo(todo) {
+function TodoItem(todo) {
     return (
         <>
             <Grid
@@ -46,3 +45,5 @@ export default function AddTodo(todo) {
         </>
     );
 }
+
+export default TodoItem;
