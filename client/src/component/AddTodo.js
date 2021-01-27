@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // MUI
+import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
-// CRUD functions
-import { updateTodo, deleteTodo } from './../API';
+import { addToDo } from './../API';
 
-export default function AddTodo(todo) {
+function AddTodo(saveTodo) {
+    const [formData, setFormData] = useState();
+
+    const handleForm = (e) => {
+        setFormData({
+            ...formData, // The triple dot is called spread operator and allows an iterable like an array to expand all it's elements
+            [e.currentTarget.id]: e.currentTarget.value,
+        });
+        console.log(formData);
+    };
+
     return (
         <>
             <Grid
@@ -19,26 +28,46 @@ export default function AddTodo(todo) {
                 direction='row'
                 justify='center'
                 alignItems='center'
+                style={{ margin: '20px 0' }}
             >
-                <Grid item xs={8} sm={4}>
+                <Grid item xs={12} sm={4}>
                     <Card>
-                        <Grid container justify='center'>
-                            <CardContent>
-                                <Typography component='h1' variant='h5'>
-                                    Todo name
-                                </Typography>
-                                <Typography component='h2' variant='caption'>
-                                    Todo description
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button onClick={() => updateTodo(todo._id)}>
-                                    Update
-                                </Button>
-                                <Button onClick={() => deleteTodo(todo._id)}>
-                                    Delete
-                                </Button>
-                            </CardActions>
+                        <Grid
+                            container
+                            direction='row'
+                            justify='center'
+                            alignItems='center'
+                        >
+                            <Grid item sm={8}>
+                                <CardContent>
+                                    <form
+                                        noValidate
+                                        autoComplete='off'
+                                        onSubmit={(e) => saveTodo(e, formData)}
+                                    >
+                                        <TextField
+                                            name='body'
+                                            type='text'
+                                            id='name'
+                                            label='Task'
+                                            style={{ margin: '0 5px' }}
+                                            onChange={handleForm}
+                                        />
+                                        <TextField
+                                            name='body'
+                                            type='text'
+                                            id='description'
+                                            label='Task Description'
+                                            onChange={handleForm}
+                                        />
+                                    </form>
+                                </CardContent>
+                            </Grid>
+                            <Grid item sm={3}>
+                                <CardActions>
+                                    <Button>Add Task</Button>
+                                </CardActions>
+                            </Grid>
                         </Grid>
                     </Card>
                 </Grid>
@@ -46,3 +75,5 @@ export default function AddTodo(todo) {
         </>
     );
 }
+
+export default AddTodo;

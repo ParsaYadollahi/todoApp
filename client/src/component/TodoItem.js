@@ -8,9 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
-import { updateTodo, deleteTodo } from './../API';
-
-function TodoItem(todo) {
+function TodoItem(todo, updateTodo, deleteTodo) {
     return (
         <>
             <Grid
@@ -22,22 +20,31 @@ function TodoItem(todo) {
                 <Grid item xs={8} sm={4}>
                     <Card>
                         <Grid container justify='center'>
-                            <CardContent>
-                                <Typography component='h1' variant='h5'>
-                                    Todo name
-                                </Typography>
-                                <Typography component='h2' variant='caption'>
-                                    Todo description
-                                </Typography>
-                            </CardContent>
-                            <CardActions>
-                                <Button onClick={() => updateTodo(todo._id)}>
-                                    Update
-                                </Button>
-                                <Button onClick={() => deleteTodo(todo._id)}>
-                                    Delete
-                                </Button>
-                            </CardActions>
+                            <Grid item sm={8}>
+                                <CardContent>
+                                    <Typography component='h1' variant='h5'>
+                                        Todo name
+                                    </Typography>
+                                    <Typography
+                                        component='h2'
+                                        variant='caption'
+                                    >
+                                        Todo description
+                                    </Typography>
+                                </CardContent>
+                            </Grid>
+                            <Grid item sm={4}>
+                                <CardActions>
+                                    <Button onClick={() => updateTodo(todo)}>
+                                        Complete
+                                    </Button>
+                                    <Button
+                                        onClick={() => deleteTodo(todo._id)}
+                                    >
+                                        Delete
+                                    </Button>
+                                </CardActions>
+                            </Grid>
                         </Grid>
                     </Card>
                 </Grid>

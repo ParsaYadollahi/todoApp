@@ -12,11 +12,11 @@ export const getTodos = async () => {
 };
 
 // Create
-export const addToDo = async (data) => {
+export const addToDo = async (formData) => {
     try {
         const todo = {
-            name: data.name,
-            description: data.description,
+            name: formData.name,
+            description: formData.description,
             status: false,
         };
         const saveTodo = await axios.post(baseUrl + '/add-todo', todo);

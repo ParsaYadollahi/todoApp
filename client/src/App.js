@@ -7,6 +7,7 @@ import AddTodo from './component/AddTodo';
 
 // CRUF functions
 import { getTodos, addToDo, updateTodo, deleteTodo } from './API';
+import { Typography } from '@material-ui/core';
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -59,7 +60,19 @@ function App() {
 
     return (
         <div>
-            <TodoItem />
+            <Typography
+                variant='h4'
+                component='h1'
+                style={{ textAlign: 'center' }}
+            >
+                My List of Todos
+            </Typography>
+            <AddTodo saveTodo={handleSaveTodo} />
+            <TodoItem
+                todo={todos}
+                updateTodo={handleUpdateTodo}
+                deleteTodo={handleDeleteTodo}
+            />
         </div>
     );
 }
