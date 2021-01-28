@@ -42,6 +42,7 @@ export const updateTodo = async (todo) => {
     }
 };
 
+// Delete
 export const deleteTodo = async (_id) => {
     try {
         const deleteTodo = await axios.delete(`${baseUrl}/delete-todo/${_id}`);

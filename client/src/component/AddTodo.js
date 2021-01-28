@@ -38,32 +38,68 @@ function AddTodo(saveTodo) {
                             justify='center'
                             alignItems='center'
                         >
-                            <Grid item sm={8}>
-                                <CardContent>
+                            <Grid
+                                item
+                                sm={8}
+                                xs={12}
+                                container
+                                direction='row'
+                                justify='flex-start'
+                                alignItems='center'
+                            >
+                                <CardContent style={{ width: '100%' }}>
                                     <form
                                         noValidate
                                         autoComplete='off'
                                         onSubmit={(e) => saveTodo(e, formData)}
                                     >
-                                        <TextField
-                                            name='body'
-                                            type='text'
-                                            id='name'
-                                            label='Task'
-                                            style={{ margin: '0 5px' }}
-                                            onChange={handleForm}
-                                        />
-                                        <TextField
-                                            name='body'
-                                            type='text'
-                                            id='description'
-                                            label='Task Description'
-                                            onChange={handleForm}
-                                        />
+                                        <Grid
+                                            container
+                                            direction='row'
+                                            justify='center'
+                                            alignItems='center'
+                                            spacing={3}
+                                        >
+                                            <Grid item sm={6}>
+                                                <TextField
+                                                    name='body'
+                                                    type='text'
+                                                    id='name'
+                                                    label='Task'
+                                                    variant='outlined'
+                                                    placeholder='Task'
+                                                    style={{
+                                                        width: '100%',
+                                                    }}
+                                                    onChange={handleForm}
+                                                />
+                                            </Grid>
+                                            <Grid item sm={6}>
+                                                <TextField
+                                                    name='body'
+                                                    type='text'
+                                                    id='description'
+                                                    label='Task Description'
+                                                    variant='outlined'
+                                                    placeholder='Descrpription'
+                                                    style={{
+                                                        width: '100%',
+                                                    }}
+                                                    onChange={handleForm}
+                                                />
+                                            </Grid>
+                                        </Grid>
                                     </form>
                                 </CardContent>
                             </Grid>
-                            <Grid item sm={3}>
+                            <Grid
+                                item
+                                sm={3}
+                                container
+                                direction='row'
+                                justify='flex-end'
+                                alignItems='center'
+                            >
                                 <CardActions>
                                     <Button>Add Task</Button>
                                 </CardActions>
