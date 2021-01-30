@@ -7,7 +7,14 @@ import AddTodo from './component/AddTodo';
 
 // CRUF functions
 import { getTodos, addToDo, updateTodo, deleteTodo } from './API';
-import { Typography } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
+
+// Theme
+import themeFile from './util/theme';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+
+const theme = createMuiTheme(themeFile);
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -62,11 +69,15 @@ function App() {
     };
 
     return (
-        <div>
+        <MuiThemeProvider theme={theme}>
             <Typography
                 variant='h4'
                 component='h1'
-                style={{ textAlign: 'center' }}
+                style={{
+                    textAlign: 'center',
+                    color: '#ffffff',
+                    margin: 50,
+                }}
             >
                 My List of Todos
             </Typography>
@@ -76,7 +87,7 @@ function App() {
                 updateTodo={handleUpdateTodo}
                 deleteTodo={handleDeleteTodo}
             />
-        </div>
+        </MuiThemeProvider>
     );
 }
 
