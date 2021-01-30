@@ -8,8 +8,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 
-import { addToDo } from './../API';
-
 function AddTodo(saveTodo) {
     const [formData, setFormData] = useState();
 
@@ -71,6 +69,7 @@ function AddTodo(saveTodo) {
                                                     style={{
                                                         width: '100%',
                                                     }}
+                                                    // need it to be onChange or else it won't catch each character
                                                     onChange={handleForm}
                                                 />
                                             </Grid>

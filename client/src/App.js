@@ -20,11 +20,17 @@ function App() {
             .catch((error) => console.log(error));
     };
 
+    useEffect(() => {
+        fetchTodo();
+    }, []);
+
     const handleSaveTodo = (e, formData) => {
+        // preventdefault cancels the event if it is cancelable (in this case it's to cancel the submit button so that we can save it)
         e.preventDefault();
         addToDo(formData)
-            .then((status, data) => {
-                if (status != 201) {
+            .then(({ status, data }) => {
+                if (status !== 201) {
+                    // 201 indicates a successful creation
                     throw new Error('Todo not saved');
                 }
                 setTodos(data.todos);
@@ -36,6 +42,7 @@ function App() {
         updateTodo(todo)
             .then(({ status, data }) => {
                 if (status !== 200) {
+                    // 200 indicates successful request
                     throw new Error('Todo not Updated');
                 }
                 setTodos(data.todos);
@@ -53,10 +60,6 @@ function App() {
             })
             .catch((error) => console.log(error));
     };
-
-    useEffect(() => {
-        fetchTodo();
-    });
 
     return (
         <div>

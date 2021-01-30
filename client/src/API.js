@@ -32,11 +32,11 @@ export const updateTodo = async (todo) => {
         const todoUpdate = {
             status: true,
         };
-        const updateTodo = await axios.put(
+        const updatedTodo = await axios.put(
             `${baseUrl}/edit-todo/${todo._id}`,
             todoUpdate
         );
-        return todoUpdate;
+        return updatedTodo;
     } catch (error) {
         throw new Error(error);
     }

@@ -9,6 +9,14 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 
 function TodoItem(todo, updateTodo, deleteTodo) {
+    const check_status = todo.status ? 'line-through' : '';
+
+    const complete_button = todo.status ? (
+        <> </>
+    ) : (
+        <Button onClick={() => deleteTodo(todo._id)}>Delete</Button>
+    );
+
     return (
         <>
             <Grid
@@ -22,27 +30,32 @@ function TodoItem(todo, updateTodo, deleteTodo) {
                         <Grid container justify='center'>
                             <Grid item sm={8}>
                                 <CardContent>
-                                    <Typography component='h1' variant='h5'>
+                                    <Typography
+                                        component='h1'
+                                        variant='h5'
+                                        style={{
+                                            textDecoration: check_status,
+                                        }}
+                                    >
                                         Todo name
                                     </Typography>
                                     <Typography
                                         component='h2'
                                         variant='caption'
+                                        style={{
+                                            textDecoration: check_status,
+                                        }}
                                     >
                                         Todo description
                                     </Typography>
                                 </CardContent>
                             </Grid>
-                            <Grid item sm={4}>
+                            <Grid container justify='flex-end' item sm={4}>
                                 <CardActions>
                                     <Button onClick={() => updateTodo(todo)}>
                                         Complete
                                     </Button>
-                                    <Button
-                                        onClick={() => deleteTodo(todo._id)}
-                                    >
-                                        Delete
-                                    </Button>
+                                    {complete_button}
                                 </CardActions>
                             </Grid>
                         </Grid>
