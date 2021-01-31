@@ -7,7 +7,7 @@ import AddTodo from './component/AddTodo';
 
 // CRUF functions
 import { getTodos, addToDo, updateTodo, deleteTodo } from './API';
-import { Container, Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 // Theme
 import themeFile from './util/theme';
