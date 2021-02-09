@@ -55,24 +55,28 @@ function TodoItem({ todo, updateTodo, deleteTodo }) {
                         <Grid container justify='center'>
                             <Grid item sm={8}>
                                 <CardContent>
-                                    <Typography
-                                        component='h1'
-                                        variant='h5'
-                                        style={{ ...check_status }}
-                                        className={classes.title}
-                                    >
-                                        {todo.name}
-                                    </Typography>
-                                    <Typography
-                                        component='h2'
-                                        variant='caption'
-                                        style={{
-                                            textDecoration: check_status,
-                                        }}
-                                        className={classes.decsription}
-                                    >
-                                        {todo.decsription}
-                                    </Typography>
+                                    <Grid container direction='row'>
+                                        <Grid item sm={6}>
+                                            <Typography
+                                                component='h1'
+                                                variant='h5'
+                                                style={{ ...check_status }}
+                                                className={classes.title}
+                                            >
+                                                {todo.name}
+                                            </Typography>
+                                        </Grid>
+                                        <Grid item sm={6}>
+                                            <Typography
+                                                component='h2'
+                                                variant='h6'
+                                                style={{ ...check_status }}
+                                                className={classes.decsription}
+                                            >
+                                                {todo.description}
+                                            </Typography>
+                                        </Grid>
+                                    </Grid>
                                 </CardContent>
                             </Grid>
                             <Grid container justify='flex-end' item sm={4}>

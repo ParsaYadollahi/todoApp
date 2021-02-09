@@ -29,8 +29,11 @@ function AddTodo({ saveTodo }) {
         });
     };
 
-    const handleOnClick = (e) => {
-        saveTodo(e, formData);
+    const handleOnClick = () => {
+        if (formData.name == '' || formData.description == '') {
+            return; // Can also do alert
+        }
+        saveTodo(formData);
         setFormData(INITIAL_FORM_DATA);
     };
 
@@ -140,7 +143,7 @@ function AddTodo({ saveTodo }) {
                                 <CardActions>
                                     <Button
                                         className={classes.addButton}
-                                        onClick={(e) => handleOnClick(e)}
+                                        onClick={() => handleOnClick()}
                                     >
                                         Add Task
                                     </Button>

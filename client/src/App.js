@@ -31,9 +31,7 @@ function App() {
             .catch((error) => console.log(error));
     };
 
-    const handleSaveTodo = (e, formData) => {
-        // preventdefault cancels the event if it is cancelable (in this case it's to cancel the submit button so that we can save it)
-        e.preventDefault();
+    const handleSaveTodo = (formData) => {
         addToDo(formData)
             .then(({ status, data }) => {
                 if (status !== 200) {
