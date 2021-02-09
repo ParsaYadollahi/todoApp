@@ -74,7 +74,6 @@ function AddTodo({ saveTodo }) {
                                             spacing={3}
                                         >
                                             <Grid item sm={6}>
-                                                {console.log(formData)}
                                                 <TextField
                                                     name='body'
                                                     type='text'
@@ -90,6 +89,11 @@ function AddTodo({ saveTodo }) {
                                                     // need it to be onChange or else it won't catch each character
                                                     onChange={handleForm}
                                                     InputLabelProps={{
+                                                        style: {
+                                                            color: 'white',
+                                                        },
+                                                    }}
+                                                    InputProps={{
                                                         style: {
                                                             color: 'white',
                                                         },
@@ -110,6 +114,11 @@ function AddTodo({ saveTodo }) {
                                                     }}
                                                     onChange={handleForm}
                                                     InputLabelProps={{
+                                                        style: {
+                                                            color: 'white',
+                                                        },
+                                                    }}
+                                                    InputProps={{
                                                         style: {
                                                             color: 'white',
                                                         },

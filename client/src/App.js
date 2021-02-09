@@ -51,6 +51,8 @@ function App() {
                     // 200 indicates successful request
                     throw new Error('Todo not Updated');
                 }
+                var index = todos.findIndex((i) => i._id == data._id);
+                todos[index] = data;
                 setTodos([...todos]);
             })
             .catch((error) => console.log(error));
@@ -66,7 +68,7 @@ function App() {
             })
             .catch((error) => console.log(error));
     };
-    console.log(todos);
+
     return (
         <MuiThemeProvider theme={theme}>
             <Typography

@@ -28,7 +28,9 @@ const useStyles = makeStyles((theme) => ({
 
 function TodoItem({ todo, updateTodo, deleteTodo }) {
     const classes = useStyles();
-    const check_status = todo.status ? 'line-through' : '';
+    const check_status = todo.status
+        ? { textDecoration: 'line-through', color: 'grey' }
+        : '';
     const complete_button = todo.status ? (
         <> </>
     ) : (
@@ -56,9 +58,7 @@ function TodoItem({ todo, updateTodo, deleteTodo }) {
                                     <Typography
                                         component='h1'
                                         variant='h5'
-                                        style={{
-                                            textDecoration: check_status,
-                                        }}
+                                        style={{ ...check_status }}
                                         className={classes.title}
                                     >
                                         {todo.name}
