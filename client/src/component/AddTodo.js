@@ -16,16 +16,22 @@ const useStyles = makeStyles((theme) => ({
     addButton: theme.addButton,
 }));
 
-function AddTodo(saveTodo) {
+const INITIAL_FORM_DATA = { name: '', description: '' };
+
+function AddTodo({ saveTodo }) {
     const classes = useStyles();
-    const [formData, setFormData] = useState();
+    const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
     const handleForm = (e) => {
         setFormData({
             ...formData, // The triple dot is called spread operator and allows an iterable like an array to expand all it's elements
             [e.currentTarget.id]: e.currentTarget.value,
         });
-        console.log(formData);
+    };
+
+    const handleOnClick = (e) => {
+        saveTodo(e, formData);
+        setFormData(INITIAL_FORM_DATA);
     };
 
     return (
@@ -58,7 +64,7 @@ function AddTodo(saveTodo) {
                                     <form
                                         noValidate
                                         autoComplete='off'
-                                        onSubmit={(e) => saveTodo(e, formData)}
+                                        // onSubmit={(e) => saveTodo(e, formData)}
                                     >
                                         <Grid
                                             container
@@ -68,6 +74,7 @@ function AddTodo(saveTodo) {
                                             spacing={3}
                                         >
                                             <Grid item sm={6}>
+                                                {console.log(formData)}
                                                 <TextField
                                                     name='body'
                                                     type='text'
@@ -75,6 +82,7 @@ function AddTodo(saveTodo) {
                                                     label='Task'
                                                     variant='outlined'
                                                     placeholder='Task'
+                                                    value={formData.name}
                                                     className={classes.input}
                                                     style={{
                                                         width: '100%',
@@ -96,6 +104,7 @@ function AddTodo(saveTodo) {
                                                     label='Task Description'
                                                     variant='outlined'
                                                     placeholder='Descrpription'
+                                                    value={formData.description}
                                                     style={{
                                                         width: '100%',
                                                     }}
@@ -120,7 +129,10 @@ function AddTodo(saveTodo) {
                                 alignItems='center'
                             >
                                 <CardActions>
-                                    <Button className={classes.addButton}>
+                                    <Button
+                                        className={classes.addButton}
+                                        onClick={(e) => handleOnClick(e)}
+                                    >
                                         Add Task
                                     </Button>
                                 </CardActions>

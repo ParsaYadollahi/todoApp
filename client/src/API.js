@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000/';
+const baseUrl = 'http://localhost:3000';
 // Read
 export const getTodos = async () => {
     try {
@@ -19,7 +19,7 @@ export const addToDo = async (formData) => {
             description: formData.description,
             status: false,
         };
-        const saveTodo = await axios.post(baseUrl + '/add-todo', todo);
+        const saveTodo = await axios.post(baseUrl + '/todos', todo);
         return saveTodo;
     } catch (error) {
         throw new Error(error);
@@ -33,7 +33,7 @@ export const updateTodo = async (todo) => {
             status: true,
         };
         const updatedTodo = await axios.put(
-            `${baseUrl}/edit-todo/${todo._id}`,
+            `${baseUrl}/todos/${todo._id}`,
             todoUpdate
         );
         return updatedTodo;
@@ -45,7 +45,8 @@ export const updateTodo = async (todo) => {
 // Delete
 export const deleteTodo = async (_id) => {
     try {
-        const deleteTodo = await axios.delete(`${baseUrl}/delete-todo/${_id}`);
+        const deleteTodo = await axios.delete(`${baseUrl}/todos/${_id}`);
+        console.log(deleteTodo);
         return deleteTodo;
     } catch (error) {
         throw new Error(error);

@@ -26,19 +26,17 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function TodoItem(todo, updateTodo, deleteTodo) {
+function TodoItem({ todo, updateTodo, deleteTodo }) {
     const classes = useStyles();
     const check_status = todo.status ? 'line-through' : '';
     const complete_button = todo.status ? (
         <> </>
     ) : (
         <Button
-            onClick={() => deleteTodo(todo._id)}
-            variant='outlined'
-            className={classes.deleteButton}
-            color={theme.colors.red}
+            onClick={() => updateTodo(todo)}
+            className={classes.completeButton}
         >
-            Delete
+            Complete
         </Button>
     );
 
@@ -63,7 +61,7 @@ function TodoItem(todo, updateTodo, deleteTodo) {
                                         }}
                                         className={classes.title}
                                     >
-                                        Todo name
+                                        {todo.name}
                                     </Typography>
                                     <Typography
                                         component='h2'
@@ -73,19 +71,21 @@ function TodoItem(todo, updateTodo, deleteTodo) {
                                         }}
                                         className={classes.decsription}
                                     >
-                                        Todo description
+                                        {todo.decsription}
                                     </Typography>
                                 </CardContent>
                             </Grid>
                             <Grid container justify='flex-end' item sm={4}>
                                 <CardActions>
-                                    <Button
-                                        onClick={() => updateTodo(todo)}
-                                        className={classes.completeButton}
-                                    >
-                                        Complete
-                                    </Button>
                                     {complete_button}
+                                    <Button
+                                        onClick={() => deleteTodo(todo._id)}
+                                        variant='outlined'
+                                        className={classes.deleteButton}
+                                        color={theme.colors.red}
+                                    >
+                                        Delete
+                                    </Button>
                                 </CardActions>
                             </Grid>
                         </Grid>

@@ -19,28 +19,27 @@ const theme = createMuiTheme(themeFile);
 function App() {
     const [todos, setTodos] = useState([]);
 
-    const fetchTodo = () => {
-        getTodos()
-            .then((data) => {
-                setTodos(todos);
-            })
-            .catch((error) => console.log(error));
-    };
-
     useEffect(() => {
         fetchTodo();
     }, []);
+
+    const fetchTodo = () => {
+        getTodos()
+            .then((formData) => {
+                setTodos(formData.data);
+            })
+            .catch((error) => console.log(error));
+    };
 
     const handleSaveTodo = (e, formData) => {
         // preventdefault cancels the event if it is cancelable (in this case it's to cancel the submit button so that we can save it)
         e.preventDefault();
         addToDo(formData)
             .then(({ status, data }) => {
-                if (status !== 201) {
-                    // 201 indicates a successful creation
+                if (status !== 200) {
                     throw new Error('Todo not saved');
                 }
-                setTodos(data.todos);
+                setTodos([...todos, data]);
             })
             .catch((error) => console.log(error));
     };
@@ -52,7 +51,7 @@ function App() {
                     // 200 indicates successful request
                     throw new Error('Todo not Updated');
                 }
-                setTodos(data.todos);
+                setTodos([...todos]);
             })
             .catch((error) => console.log(error));
     };
@@ -63,11 +62,11 @@ function App() {
                 if (status !== 200) {
                     throw new Error('Todo not deleted');
                 }
-                setTodos(data.todos);
+                setTodos(todos.filter((todo) => todo._id !== _id));
             })
             .catch((error) => console.log(error));
     };
-
+    console.log(todos);
     return (
         <MuiThemeProvider theme={theme}>
             <Typography
@@ -82,11 +81,14 @@ function App() {
                 My List of Todos
             </Typography>
             <AddTodo saveTodo={handleSaveTodo} />
-            <TodoItem
-                todo={todos}
-                updateTodo={handleUpdateTodo}
-                deleteTodo={handleDeleteTodo}
-            />
+            {todos.map((todo) => (
+                <TodoItem
+                    key={todo._id}
+                    todo={todo}
+                    updateTodo={handleUpdateTodo}
+                    deleteTodo={handleDeleteTodo}
+                />
+            ))}
         </MuiThemeProvider>
     );
 }
