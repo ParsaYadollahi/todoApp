@@ -1,3 +1,6 @@
+Building a todo app for the Google DSC web app tutorial
+
+Current mood of the team:
 ⊂_ヽ     
 　 ＼＼  
 　　 ＼( ͡° ͜ʖ ͡°)   
