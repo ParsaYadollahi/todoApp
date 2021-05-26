@@ -18,6 +18,7 @@ Pray the workshop runs smoothly
 
 
 Current mood of the team:
+
 ⊂_ヽ     
 　 ＼＼  
 　　 ＼( ͡° ͜ʖ ͡°)   
